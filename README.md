@@ -11,10 +11,11 @@ NGINX配置文件思路就是当客户端访问tomcat（因为其就是一个服
 再次访问的时候因为cookie是存在客户端的，取出cookie里的sessionid，
 用此sessionid取出redis里第一次访问存的用户名与这次访问的用户名做比较，如果相同直接进行连接。
 
+```
 user root; #用户名
 worker_processes  3;
 pid logs/nginx.pid;
-# [ debug | info | notice | warn | error | crit ]
+##### [ debug | info | notice | warn | error | crit ]
 error_log   /usr/local/nginx/logs/error.log  info;#与自己文件目录一样 
 events {
 worker_connections   1024;
@@ -221,3 +222,4 @@ nginx:192.168.214.130 | tomcat:192.168.214.130 添加redis keyabcd
 http://192.168.214.130:9999/redisdemo/main.do?userName=abcd进入，实现负载均衡，页面分别显示
 nginx:192.168.214.130 | tomcat:192.168.214.130 取得redis keyabcd
 nginx:192.168.214.130 | tomcat:192.168.214.132 取得redis keyabcd
+```
